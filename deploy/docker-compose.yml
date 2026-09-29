@@ -1,0 +1,12 @@
+services:
+  opsilot:
+    build: ..
+    ports:
+      - "4030:4030"
+    env_file:
+      - ../.env
+    volumes:
+      - opsilot-data:/app/data
+
+volumes:
+  opsilot-data:

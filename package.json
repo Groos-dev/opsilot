@@ -1,0 +1,31 @@
+{
+  "name": "opsilot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Opsilot — x402 settlement with an ops co-pilot. More than settlement / 不仅仅只是结算.",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p ${PORT:-4030}",
+    "build": "next build",
+    "start": "next start -p ${PORT:-4030}",
+    "test": "node --import tsx --test test/**/*.test.ts"
+  },
+  "dependencies": {
+    "@x402/core": "^2.27.0",
+    "@x402/evm": "^2.27.0",
+    "better-sqlite3": "^11.10.0",
+    "next": "^15.5.26",
+    "prom-client": "^15.1.2",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "viem": "^2.57.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.20.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}
