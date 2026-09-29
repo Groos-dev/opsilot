@@ -14,13 +14,15 @@ export type PilotReport = {
 
 export function analyzeOps(input: {
   databasePath: string;
-  gasBalanceAvax: number;
-  gasAlertThresholdAvax: number;
+  gasBalance: number;
+  gasAlertThreshold: number;
+  nativeSymbol: string;
   rpcOk: boolean;
 }): PilotReport {
   const counts = countByStatus(input.databasePath);
   const recent = listSettlements(input.databasePath, 30);
   const priorities: PilotPriority[] = [];
+  const symbol = input.nativeSymbol;
 
   if (!input.rpcOk) {
     priorities.push({
@@ -31,19 +33,19 @@ export function analyzeOps(input: {
     });
   }
 
-  if (input.gasBalanceAvax < input.gasAlertThresholdAvax) {
+  if (input.gasBalance < input.gasAlertThreshold) {
     priorities.push({
       severity: "critical",
       topic: "gas",
-      evidence: `Hot wallet balance ${input.gasBalanceAvax.toFixed(4)} AVAX is below threshold ${input.gasAlertThresholdAvax}`,
-      recommendation: "Top up AVAX on the settlement wallet before settles start failing.",
+      evidence: `Hot wallet balance ${input.gasBalance.toFixed(4)} ${symbol} is below threshold ${input.gasAlertThreshold}`,
+      recommendation: `Top up ${symbol} on the settlement wallet before settles start failing.`,
     });
-  } else if (input.gasBalanceAvax < input.gasAlertThresholdAvax * 2) {
+  } else if (input.gasBalance < input.gasAlertThreshold * 2) {
     priorities.push({
       severity: "warning",
       topic: "gas",
-      evidence: `Hot wallet balance ${input.gasBalanceAvax.toFixed(4)} AVAX is approaching the alert threshold`,
-      recommendation: "Schedule a gas top-up soon.",
+      evidence: `Hot wallet balance ${input.gasBalance.toFixed(4)} ${symbol} is approaching the alert threshold`,
+      recommendation: `Schedule a ${symbol} top-up soon.`,
     });
   }
 

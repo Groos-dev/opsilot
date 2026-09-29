@@ -104,3 +104,7 @@ export function countByStatus(databasePath: string): Record<SettlementStatus, nu
   for (const row of rows) out[row.status] = row.c;
   return out;
 }
+
+export function clearSettlements(databasePath: string): void {
+  getDb(databasePath).exec("DELETE FROM settlements");
+}

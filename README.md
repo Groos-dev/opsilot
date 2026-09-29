@@ -2,7 +2,7 @@
 
 **Ops + Pilot · 不仅仅只是结算 / More than settlement**
 
-开箱即用的 x402 结算服务：进程内 `@x402/core` + `@x402/evm` 完成 `/supported` `/verify` `/settle`，并带幂等账本、串行结算队列、pending 对账、gas 观测，以及只读运维副驾驶 **Pilot**（Next.js + React 面板）。
+开箱即用的 **通用** x402 结算服务：进程内 `@x402/core` + `@x402/evm` 完成 `/supported` `/verify` `/settle`，并带幂等账本、串行结算队列、pending 对账、gas 观测，以及只读运维副驾驶 **Pilot**（Next.js + React 面板）。网络与原生币由环境变量配置，不绑定单一公链。
 
 ## 快速开始
 

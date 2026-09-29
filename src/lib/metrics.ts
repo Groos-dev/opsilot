@@ -33,7 +33,7 @@ export const settleCounters = {
 
 export const gasBalanceGauge = new Gauge({
   name: "opsilot_wallet_native_balance",
-  help: "Native gas token balance (AVAX)",
+  help: "Native gas token balance on the settlement wallet",
   labelNames: ["address"],
   registers: [registry],
 });

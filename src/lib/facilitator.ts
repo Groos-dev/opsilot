@@ -3,8 +3,8 @@ import { toFacilitatorEvmSigner } from "@x402/evm";
 import { registerExactEvmScheme } from "@x402/evm/exact/facilitator";
 import { createPublicClient, createWalletClient, http, publicActions } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { avalanche, avalancheFuji } from "viem/chains";
 import type { AppConfig } from "./config";
+import { resolveChain } from "./network";
 
 export type FacilitatorBundle = {
   facilitator: InstanceType<typeof x402Facilitator>;
@@ -15,16 +15,11 @@ export type FacilitatorBundle = {
 
 let cached: FacilitatorBundle | null = null;
 
-function chainForNetwork(network: string) {
-  if (network === "eip155:43114" || network === "avalanche") return avalanche;
-  return avalancheFuji;
-}
-
 export function getFacilitatorBundle(config: AppConfig): FacilitatorBundle {
   if (cached) return cached;
 
   const account = privateKeyToAccount(config.settlementPrivateKey);
-  const chain = chainForNetwork(config.network);
+  const chain = resolveChain(config);
   const transport = http(config.rpcUrl);
   const publicClient = createPublicClient({ chain, transport });
   const walletClient = createWalletClient({ account, chain, transport }).extend(publicActions);

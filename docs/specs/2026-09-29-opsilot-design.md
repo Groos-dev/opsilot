@@ -29,7 +29,7 @@
 │            SQLite                     │
 └─────────────────┬─────────────────────┘
                   ▼
-            配置的 EVM 网络（演示默认 Fuji）
+            配置的 EVM 网络（NETWORK / RPC_URL）
 ```
 
 结算协议能力来自官方 npm 包，不翻译 x402-rs。本仓库增量在运维语义与面板。
@@ -113,10 +113,12 @@
 
 见 `.env.example`：
 
-- `PORT`、`NETWORK`、`RPC_URL`  
+- `PORT`、`NETWORK`、`CHAIN_ID`（可选）、`RPC_URL`  
 - `SETTLEMENT_PRIVATE_KEY`  
 - `OPS_API_TOKEN`、`DATABASE_PATH`  
-- `GAS_ALERT_THRESHOLD_AVAX`、`CONFIRMATION_TIMEOUT_MS`
+- `NATIVE_SYMBOL`、`GAS_ALERT_THRESHOLD`、`CONFIRMATION_TIMEOUT_MS`  
+- `EXPLORER_BASE_URL` / `EXPLORER_TX_URL`（可选）  
+- `MOCK_DATA`、`MOCK_ASSET`（演示用，从配置网络拉 ERC-20 Transfer）
 
 ## 本地运行
 
